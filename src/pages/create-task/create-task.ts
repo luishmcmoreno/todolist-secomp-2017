@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
+import { TaskProvider } from './../../providers/task/task';
+
 /**
  * Generated class for the CreateTaskPage page.
  *
@@ -15,7 +17,16 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class CreateTaskPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  public newTask = { title: '', priority: '' };
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, public taskProvider: TaskProvider) {
+  }
+
+  public createTask(): void {
+    if (this.newTask.title && this.newTask.priority) {
+      this.taskProvider.addNewTask(this.newTask);
+      this.navCtrl.pop();
+    }
   }
 
   ionViewDidLoad() {
