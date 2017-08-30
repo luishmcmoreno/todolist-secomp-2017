@@ -6,14 +6,29 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>tasks</ion-title>
+  <ion-navbar color="primary">
+    <ion-title>Lista de tarefas</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
+
+  <ion-item text-wrap *ngFor="let task of tasks">
+    <ion-label [class.completed]="task.completed">
+      <h2>{{ task.title }}</h2>
+      <p> <small>{{ task.priority }}</small> </p>
+    </ion-label>
+    <ion-checkbox color="primary" checked="true" [(ngModel)]="task.completed"></ion-checkbox>
+  </ion-item>
+
+  <ion-item text-wrap *ngIf="!tasks?.length">
+    <ion-icon name="alert" item-left color="primary"></ion-icon>
+    Não há tarefas cadastradas
+  </ion-item>
+
+
   <ion-fab bottom right>
     <button ion-fab navPush="CreateTaskPage"><ion-icon name="add"></ion-icon></button>
   </ion-fab>

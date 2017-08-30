@@ -1,3 +1,4 @@
+import { TaskProvider } from './../../providers/task/task';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
@@ -15,11 +16,12 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class TasksPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  public tasks;
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, public taskProvider: TaskProvider) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad TasksPage');
+    this.tasks = this.taskProvider.tasks;
   }
-
 }
